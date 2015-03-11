@@ -19,28 +19,32 @@
 		@include position(fixed, left 0 right 0 bottom 0px);
 		@include spacing-no();
 		@include margin($space-small);
-		list-style: none;
 		@include opacity(0);
+		list-style: none;
 		@include level(1001);
-		@include animate(transform, 0.6s);
-		@include transform-translate-y(800px);
+		@include transform-translate-3d(0, 800px);
 
 		// Reveal
 		.contextplate-reveal &.reveal {
 			@include opacity(1);
-			@include transform-translate-y(0px);
+			@include animate(all, 0.6s);
+			@include transform-translate-3d(0px, 0px);
 
 			li.seperate {
-				@include transform-translate-y(0px);
+				@include transform-translate-3d(0px, 0px);
 			}
 		}
 
 		// List items
 		li {
 			@include border-bottom(1px, $context-line-colour);
+			@include background-colour($context-background-colour);
 
-			// Links
-			a {
+			// Links / headings
+			h6 {
+				@include spacing-no();
+			}
+			a, h6 {
 				@include display(block);
 				@include padding($space-minor);
 				@include padding-bottom($space-minor - 2px);
@@ -48,7 +52,6 @@
 				@include text-colour($grey-blue-dark);
 				@include text-decoration(none);
 				@include text-size(16px);
-				@include background-colour($context-background-colour);
 
 				// Close
 				&.close {
@@ -56,31 +59,51 @@
 				}
 			}
 
+			// Double
+			&.double {
+				@include row();
+
+				a {
+					@include span(6);
+
+					&:first-child {
+						@include border-right(1px, $context-line-colour);
+					}
+				}
+			}
+
+			// Triple
+			&.triple {
+				@include row();
+
+				a {
+					@include span(4);
+					@include border-right(1px, $context-line-colour);
+
+					&:last-child {
+						@include border-no();
+					}
+				}
+			}
+
 			// First
-			&:first-child a {
+			&:first-child {
 				@include border-radius-top();
 			}
 
 			// Last
 			&.last {
+				@include border-radius-bottom();
 				@include border-no();
-
-				a {
-					@include border-radius-bottom();
-				}
 			}
 
 			// Seperate
 			&.seperate {
+				@include margin-top($space-small);
+				@include animate(all, 0.3s, 0.5s);
+				@include transform-translate-3d(0px, 100px);
 				@include border-no();
-				@include animate(transform, 0.3s, 0.5s);
-				@include transform-translate-y(100px);
-
-				// Links
-				a {
-					@include margin-top($space-small);
-					@include border-radius();
-				}
+				@include border-radius();
 			}
 		}
 
@@ -92,7 +115,7 @@
 			@include margin(0px);
 			@include border-radius();
 			@include animate(none);
-			@include transform-translate-y(0px);
+			@include transform-translate-3d(0px, 0px);
 			visibility: hidden;
 
 			// Reveal
@@ -104,13 +127,13 @@
 			// List item
 			li {
 				@include border-no();
+				@include background-colour(transparent);
 
-				// Links
-				a {
+				// Links / headings
+				a, h6 {
 					@include padding-vertical($space-small);
 					@include text-align(left);
 					@include text-size(14px);
-					@include background-colour(transparent);
 
 					.no-touch &:hover {
 						@include background-colour($context-line-hover-colour);
@@ -130,7 +153,7 @@
 				// Seperate
 				&.seperate {
 					@include animate(none);
-					@include transform-translate-y(0px);
+					@include transform-translate-3d(0px, 0px);
 
 					// Links
 					a {
