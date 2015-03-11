@@ -2,7 +2,7 @@
  * jQuery File: 	contextplage.js
  * Type:			component
  * Author:        	Chris Humboldt
- * Last Edited:   	10 March 2015
+ * Last Edited:   	11 March 2015
  */
 
 
@@ -40,6 +40,7 @@
 			var $this_contextual 			= $(this.element);
 			var $context_id 				= $this_contextual.data('context-id');
 			var $this_contextual_trigger 	= $('[data-context-trigger='+ $context_id +']');
+			var $window_w 					= $(window).width();
 
 
 			// Setup
@@ -57,12 +58,20 @@
 				$ev.preventDefault();
 				$this.contextplate_close($this_contextual);
 			});
+			$(window).resize(function()
+			{
+				if($(window).width() != $window_w)
+				{
+					$this.contextplate_close($this_contextual);
+					$window_w 				= $(window).width();
+				}
+			});
 
 			// Show contextplate
 			$this_contextual_trigger.on('click', function($ev)
 			{
 				$ev.preventDefault();
-				$this.contextplate_reveal($this_contextual);
+				$this.contextplate_reveal($this_contextual, $(this));
 			});
 
 
@@ -87,17 +96,41 @@
 		// Public functions
 		// ---------------------------------------------------------------------------------------
 		// Close
-		contextplate_close 					: function($this_contextual)
+		contextplate_close 				: function($this_contextual)
 		{
 			$this_contextual.removeClass('reveal');
 			$('html').removeClass('contextplate-reveal');
 		},
 
 		// Reveal
-		contextplate_reveal				: function($this_contextual)
+		contextplate_reveal				: function($this_contextual, $this)
 		{
 			$this_contextual.addClass('reveal');
 			$('html').addClass('contextplate-reveal');
+
+			// If large screen
+			if($(window).width() > 700)
+			{
+				// Variables
+				var $position 			= $this.offset();
+				var $trigger_w 			= $this.width();
+				var $trigger_h	 		= $this.height();
+
+				var $position_top		= $position.top + $trigger_h + 14;
+				var $position_left		= $position.left - ($trigger_w / 2);
+
+				// Check left position
+				if($position_left < 0)
+				{
+					$position_left 		= 4;
+				}
+
+				$this_contextual.css({ top: $position_top, left: $position_left, bottom: 'auto' });
+			}
+			else
+			{
+				$this_contextual.attr({ style: '' });
+			}
 		},
 
 		// Overlay

@@ -1,7 +1,7 @@
 /**
- * Title: 			Importer File
- * SASS File: 		_import.scss
- * Type: 			Importer
+ * Title: 			Variables
+ * SASS File: 		_variables.scss
+ * Type: 			partial
  * Author:        	Chris Humboldt
  * Last Edited:   	11 March 2015
  */
@@ -9,16 +9,13 @@
 
 // Table of contents
 // ---------------------------------------------------------------------------------------
-// Imports
+// Colours
 
 
-// Imports
+// Colours
 // ---------------------------------------------------------------------------------------
-@import "variable";
-
-@import "menu";
-@import "overlay";
-
-@import "execute";
+$context-background-colour 		: lighten($grey-blue-light, 15%);
+$context-line-colour			: lighten($grey-blue-light, 5%);
+$context-line-hover-colour 		: lighten($grey-blue-light, 13%);
 
 

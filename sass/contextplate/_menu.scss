@@ -37,7 +37,7 @@
 
 		// List items
 		li {
-			@include border-bottom(1px, lighten($grey-blue-light, 5%));
+			@include border-bottom(1px, $context-line-colour);
 
 			// Links
 			a {
@@ -48,7 +48,7 @@
 				@include text-colour($grey-blue-dark);
 				@include text-decoration(none);
 				@include text-size(16px);
-				@include background-colour(lighten($grey-blue-light, 15%));
+				@include background-colour($context-background-colour);
 
 				// Close
 				&.close {
@@ -86,19 +86,22 @@
 
 		// Adapt
 		@include breakpoint(large) {
-			@include arrow(top, $grey-x-light, 8px);
+			@include arrow(top, $context-background-colour, 8px);
 			@include position(absolute);
-			@include width(180px);
+			@include width(160px);
+			@include margin(0px);
 			@include border-radius();
 			@include animate(none);
 			@include transform-translate-y(0px);
+			visibility: hidden;
 
 			// Reveal
 			.contextplate-reveal &.reveal {
 				@include animate(opacity);
+				visibility: visible;
 			}
 
-			// List itema
+			// List item
 			li {
 				@include border-no();
 
@@ -106,12 +109,11 @@
 				a {
 					@include padding-vertical($space-small);
 					@include text-align(left);
-					@include text-colour($grey-dark);
 					@include text-size(14px);
 					@include background-colour(transparent);
 
 					.no-touch &:hover {
-						@include background-colour($grey-light);
+						@include background-colour($context-line-hover-colour);
 					}
 				}
 

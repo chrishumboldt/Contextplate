@@ -23,6 +23,11 @@
 		@include opacity(0);
 		@include animate(all, 0.4s);
 		visibility: hidden;
+
+		// Adapt
+		@include breakpoint(large) {
+			@include background-colour(fade-out($black, 1));
+		}
 	}
 
 	// Show overlay
@@ -36,13 +41,6 @@
 	.contextplate-reveal .contextplate-overlay {
 		@include opacity(1);
 		visibility: visible;
-
-		// Adapt
-		@include breakpoint(large) {
-			// @include opacity(0);
-			// visibility: hidden;
-			@include background-colour(fade-out($black, 1));
-		}
 	}
 }
 
