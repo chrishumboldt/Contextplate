@@ -1,1 +1,26 @@
-contextplate.scss
+/**
+ * Title: 			Contextual Menu Component
+ * SASS File: 		contextplate.scss
+ * Type: 			loader
+ * Author:        	Chris Humboldt
+ * Last Edited:   	10 March 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Imports
+// Execute Contextplate CSS
+
+
+// Imports
+// ---------------------------------------------------------------------------------------
+@import "../bower_components/blueplate/sass/blueplate.scss";
+@import "contextplate/import";
+
+
+// Execute Contextplate CSS
+// ---------------------------------------------------------------------------------------
+@include contextplate-css();
+
+

@@ -2,7 +2,7 @@
  * jQuery File: 	contextplage.js
  * Type:			component
  * Author:        	Chris Humboldt
- * Last Edited:   	10 Mrch 2015
+ * Last Edited:   	10 March 2015
  */
 
 
@@ -12,6 +12,7 @@
 	// Plugin setup & settings
 	var $contextplate					= 'contextplate', $defaults =
 	{
+		overlay_template 				: '<div class="contextplate-overlay"></div>'
 	};
 	
 	// The actual plugin constructor
@@ -34,20 +35,78 @@
 		{
 			// Variables
 			// ---------------------------------------------------------------------------------------
-			var $this 					= this;
-			var $settings 				= $this.settings;
+			var $this 						= this;
+			var $settings 					= $this.settings;
+			var $this_contextual 			= $(this.element);
+			var $context_id 				= $this_contextual.data('context-id');
+			var $this_contextual_trigger 	= $('[data-context-trigger='+ $context_id +']');
+
+
+			// Setup
+			// ---------------------------------------------------------------------------------------
+			$this_contextual.addClass('contextplate');
+			$this.overlay_add();
+			last_list_item();
 
 
 			// Execute
 			// ---------------------------------------------------------------------------------------
-			// Public function
-			$this.public_function();
+			// Hide contextplate
+			$('.contextplate-overlay, .contextplate .close, .contextplate a').on('click', function($ev)
+			{
+				$ev.preventDefault();
+				$this.contextplate_close($this_contextual);
+			});
+
+			// Show contextplate
+			$this_contextual_trigger.on('click', function($ev)
+			{
+				$ev.preventDefault();
+				$this.contextplate_reveal($this_contextual);
+			});
+
+
+			// Internal functions
+			// ---------------------------------------------------------------------------------------
+			// Determine the last in the list
+			function last_list_item()
+			{
+				// Loop through each
+				if($this_contextual.find('li.seperate').length > 0)
+				{
+					$this_contextual.find('li.seperate').prev().addClass('last');
+				}
+				else
+				{
+					$this_contextual.find('li:last-child').addClass('last');
+				}
+			}
 		},
+
 
 		// Public functions
 		// ---------------------------------------------------------------------------------------
-		public_function 				: function($variable)
+		// Close
+		contextplate_close 					: function($this_contextual)
 		{
+			$this_contextual.removeClass('reveal');
+			$('html').removeClass('contextplate-reveal');
+		},
+
+		// Reveal
+		contextplate_reveal				: function($this_contextual)
+		{
+			$this_contextual.addClass('reveal');
+			$('html').addClass('contextplate-reveal');
+		},
+
+		// Overlay
+		overlay_add 					: function()
+		{
+			if($('.contextplate-overlay').length == false)
+			{
+				$('body').append(this.settings.overlay_template);
+			}
 		}
 	};
 

@@ -1,0 +1,49 @@
+/**
+ * Title: 			Overlay Partial
+ * SASS File: 		_overlay.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	10 March 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Overlay
+
+
+// Overlay
+// ---------------------------------------------------------------------------------------
+@mixin contextplate-overlay() {
+	.contextplate-overlay {
+		@include display(block);
+		@include position(fixed, top 0 right 0 bottom 0 left 0);
+		@include background-colour(fade-out($black, 0.6));
+		@include level(1000);
+		@include opacity(0);
+		@include animate(all, 0.4s);
+		visibility: hidden;
+	}
+
+	// Show overlay
+	@include contextplate-show();
+}
+
+
+// Reveal overlay
+// ---------------------------------------------------------------------------------------
+@mixin contextplate-show() {
+	.contextplate-reveal .contextplate-overlay {
+		@include opacity(1);
+		visibility: visible;
+
+		// Adapt
+		@include breakpoint(large) {
+			// @include opacity(0);
+			// visibility: hidden;
+			@include background-colour(fade-out($black, 1));
+		}
+	}
+}
+
+

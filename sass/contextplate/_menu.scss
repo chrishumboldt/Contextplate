@@ -1,0 +1,143 @@
+/**
+ * Title: 			Menu
+ * SASS File: 		_menu.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	10 March 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Menu styling
+
+
+// Menu styling
+// ---------------------------------------------------------------------------------------
+@mixin contextplate-menu {
+	.contextplate {
+		@include position(fixed, left 0 right 0 bottom 0px);
+		@include spacing-no();
+		@include margin($space-small);
+		list-style: none;
+		@include opacity(0);
+		@include level(1001);
+		@include animate(transform, 0.6s);
+		@include transform-translate-y(800px);
+
+		// Reveal
+		.contextplate-reveal &.reveal {
+			@include opacity(1);
+			@include transform-translate-y(0px);
+
+			li.seperate {
+				@include transform-translate-y(0px);
+			}
+		}
+
+		// List items
+		li {
+			@include border-bottom(1px, lighten($grey-blue-light, 5%));
+
+			// Links
+			a {
+				@include display(block);
+				@include padding($space-minor);
+				@include padding-bottom($space-minor - 2px);
+				@include text-align(center);
+				@include text-colour($grey-blue-dark);
+				@include text-decoration(none);
+				@include text-size(16px);
+				@include background-colour(lighten($grey-blue-light, 15%));
+
+				// Close
+				&.close {
+					@include text-colour($red);
+				}
+			}
+
+			// First
+			&:first-child a {
+				@include border-radius-top();
+			}
+
+			// Last
+			&.last {
+				@include border-no();
+
+				a {
+					@include border-radius-bottom();
+				}
+			}
+
+			// Seperate
+			&.seperate {
+				@include border-no();
+				@include animate(transform, 0.3s, 0.5s);
+				@include transform-translate-y(100px);
+
+				// Links
+				a {
+					@include margin-top($space-small);
+					@include border-radius();
+				}
+			}
+		}
+
+		// Adapt
+		@include breakpoint(large) {
+			@include arrow(top, $grey-x-light, 8px);
+			@include position(absolute);
+			@include width(180px);
+			@include border-radius();
+			@include animate(none);
+			@include transform-translate-y(0px);
+
+			// Reveal
+			.contextplate-reveal &.reveal {
+				@include animate(opacity);
+			}
+
+			// List itema
+			li {
+				@include border-no();
+
+				// Links
+				a {
+					@include padding-vertical($space-small);
+					@include text-align(left);
+					@include text-colour($grey-dark);
+					@include text-size(14px);
+					@include background-colour(transparent);
+
+					.no-touch &:hover {
+						@include background-colour($grey-light);
+					}
+				}
+
+				// First
+				&:first-child a {
+					@include border-radius-top();
+				}
+
+				// Last
+				&:last-child a {
+					@include border-radius-bottom();
+				}
+
+				// Seperate
+				&.seperate {
+					@include animate(none);
+					@include transform-translate-y(0px);
+
+					// Links
+					a {
+						@include margin-top(0px);
+					}
+				}
+			}
+		}
+	}
+}
+
+

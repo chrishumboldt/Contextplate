@@ -1,0 +1,26 @@
+/**
+ * Title: 			Execute Partial
+ * SASS File: 		_execute.scss
+ * Type: 			partial
+ * Author:        	Chris Humboldt
+ * Last Edited:   	10 March 2015
+ */
+
+
+// Table of contents
+// ---------------------------------------------------------------------------------------
+// Contextplate CSS
+
+
+// Context CSS
+// ---------------------------------------------------------------------------------------
+@mixin contextplate-css() {
+
+	// Menu
+	@include contextplate-menu();
+
+	// Overlay
+	@include contextplate-overlay();
+}
+
+

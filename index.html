@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Meta setup -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<!-- Title -->
+	<title>Contextplate Component</title>
+
+	<!-- Required JS -->
+	<script src="js/min/jquery-v1.10.2.min.js"></script>
+	<script src="js/min/modernizr-custom-v2.8.3.min.js"></script>
+
+	<!-- Include Contextplate -->
+	<script src="js/contextplate.js"></script>
+	<link href="css/contextplate.css" rel="stylesheet" type="text/css">
+
+	<!-- Demo -->
+	<link href="css/demo.css" rel="stylesheet" type="text/css">
+	<script>
+		$(document).ready(function()
+		{
+			$('.context-menu').contextplate();
+		});
+	</script>
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h3>Contextual Menu Example</h3>
+
+		<div class="block"><div class="confine">
+		
+			<!-- Context trigger -->
+			Open the contextual <a href="#" class="context" data-context-trigger="menu-example">menu here</a>.
+
+
+		</div></div>
+
+	</div>
+
+	<!-- Actual context menu -->
+	<ul class="context-menu" data-context-id="menu-example">
+
+		<li><a href="#">Add New</a></li>
+		<li><a href="#">Edit This</a></li>
+		<li class="seperate"><a href="#" class="close">Cancel</a></li>
+
+	</ul>
+
+</body>
+</html>
